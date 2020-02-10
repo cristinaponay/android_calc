@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Calculator</string>
+    <string name="txtBtn7">7</string>
+    <string name="txtBtn8">8</string>
+    <string name="txtBtn9">9</string>
+    <string name="txtBtnDivide">\u00F7</string>
+    <string name="txtBtn4">4</string>
+    <string name="txtBtn5">5</string>
+    <string name="txtBtn6">6</string>
+    <string name="txtBtnMultiply">x</string>
+    <string name="txtBtn1">1</string>
+    <string name="txtBtn2">2</string>
+    <string name="txtBtn3">3</string>
+    <string name="txtBtnSubtract">-</string>
+    <string name="txtBtn0">0</string>
+    <string name="txtBtnPoint">.</string>
+    <string name="txtBtnEqual">=</string>
+    <string name="txtBtnAdd">+</string>
+    <string name="txtBtnCE">CE</string>
+    <string name="txtBtnC">C</string>
+    <string name="txtBtnDel">DEL</string>
+    <string name="txtBtnNegative">+/-</string>
+</resources>
