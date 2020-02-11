@@ -1,3 +1,9 @@
+// Author.....: Cristina Ponay | cristinaponay@gmail.com
+// Create Date: 19 Jan 2020
+// Application: Android Calculator
+// Description: Basic Android calculator designed after the Windows 10 standard calculator
+//              which ignores the order of operations
+
 package com.example.mycalc;
 
 public class MathCalc {
@@ -25,7 +31,6 @@ public class MathCalc {
     }
 
     public void calculate (double num1, double num2) {
-        //double answer = 0;
         switch (operation) {
             case "+":
                 result = num1 + num2; break;

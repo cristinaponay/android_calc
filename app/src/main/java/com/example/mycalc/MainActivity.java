@@ -1,13 +1,17 @@
+// Author.....: Cristina Ponay | cristinaponay@gmail.com
+// Create Date: 19 Jan 2020
+// Application: Android Calculator
+// Description: Basic Android calculator designed after the Windows 10 standard calculator
+//              which ignores the order of operations
+
 package com.example.mycalc;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.*;
-
 import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity {
@@ -15,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView txtDisplay;
     MathCalc calc = new MathCalc();
     private double dVal1 = Double.NaN;
-    private int prev = 0, next =0;
+    private int prev = 0, next = 0;
     private String chosenOp = "";
     private String strEditTxt = "";
     private String pattern = "###,###.##########";
@@ -44,9 +48,9 @@ public class MainActivity extends AppCompatActivity {
         Button btnSubtract = findViewById(R.id.btnSubtract);
         Button btnMultiply = findViewById(R.id.btnMultiply);
         Button btnDivide = findViewById(R.id.btnDivide);
-        Button btnCE = findViewById(R.id.btnCE);
-        Button btnC = findViewById(R.id.btnC);
-        Button btnDel = findViewById(R.id.btnDel);
+        Button btnCE = findViewById(R.id.btnCE);    // Clear entry button
+        Button btnC = findViewById(R.id.btnC);  // Clear button (clears everything)
+        Button btnDel = findViewById(R.id.btnDel);  // Deletes one character at a time
         Button btnEqual = findViewById(R.id.btnEqual);
         Button btnNegative = findViewById(R.id.btnNegative);
         Button btnPoint = findViewById(R.id.btnPoint);
@@ -55,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         txtDisplay = findViewById(R.id.txtDisplay);
         txtDisplay.setMovementMethod(new ScrollingMovementMethod());
 
-        // Add listeners
+        // 0 button
         btn0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // 1 button
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // 2 button
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // 3 button
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // 4 button
         btn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // 5 button
         btn5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -134,6 +143,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // 6 button
         btn6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -147,6 +157,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // 7 button
         btn7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -160,6 +171,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // 8 button
         btn8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -173,6 +185,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // 9 button
         btn9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -186,10 +199,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // "." button
         btnPoint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(!isDelLockOn) {
+                    // will not allow entering "." more than once
                     if (txtDisplay.getText().toString().indexOf('.') == -1) {
                         txtDisplay.setText(txtDisplay.getText() + ".");
                     } else if (editCalc.getText().toString().length() - 1 == next) {
@@ -203,6 +218,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // "C" button - clears everything and resets the screen
         btnC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -213,6 +229,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // "CE" button - clears only the current entry
         btnCE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -220,13 +237,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // "DEL" button - works as backspace
         btnDel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String strDisplay = txtDisplay.getText().toString();
-
+                // will delete only characters if isDelLockOn is false
                 if(!isDelLockOn) {
-                    if (strDisplay.length() == 1) {
+                    if(strDisplay.length() == 1) {
                         txtDisplay.setText("0");
                     }
                     else {
@@ -236,6 +254,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Addition
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -244,6 +263,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Subtraction
         btnSubtract.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -252,6 +272,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Multiplication
         btnMultiply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -260,6 +281,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Division
         btnDivide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -268,6 +290,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // "=" button
         btnEqual.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -276,21 +299,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // toggles the displaying of "-" infront of the number
         btnNegative.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(txtDisplay.getText().toString() != "0") {
-                    if (minusOn) {
+                    if(minusOn) {
                         txtDisplay.setText("-" + txtDisplay.getText());
-                    } else if (txtDisplay.getText().toString().charAt(0) == '-') {
+                    } else if(txtDisplay.getText().toString().charAt(0) == '-') {
                         txtDisplay.setText(txtDisplay.getText().toString().substring(1));
                     }
-                    minusOn = !minusOn;
+                    minusOn = !minusOn; // toggle
                 }
             }
         });
     }
 
+    // reset variables
     private void reset() {
         prev = 0;
         next = 0;
@@ -298,9 +323,9 @@ public class MainActivity extends AppCompatActivity {
         calc.setResult(0);
     }
 
-    // function that performs the calculations
+    // function that performs all the calculations
     private void compute() {
-        // initialize local variables
+        // get current input
         String strResult = txtDisplay.getText().toString();
 
         // if last character on display is ".", remove it
@@ -326,7 +351,7 @@ public class MainActivity extends AppCompatActivity {
                 else {
                     strEditTxt += txtDisplay.getText().toString() + chosenOp;
                 }
-                editCalc.setText(strEditTxt);
+                editCalc.setText(strEditTxt);   // moves the input to EditText area with the chosen operator
                 editCalc.setSelection(strEditTxt.length()); // puts the cursor at the end
 
                 next = strEditTxt.lastIndexOf(chosenOp); // sets the index # for substring later
@@ -354,7 +379,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Can't divide by 0!", Toast.LENGTH_LONG).show();
                     }
                     else {
-                        strResult = df.format(calc.getResult());
+                        strResult = df.format(calc.getResult());    // format the display
                     }
                     txtDisplay.setText(strResult);
 
@@ -363,7 +388,7 @@ public class MainActivity extends AppCompatActivity {
                         calc.setOperation("=");
                     }
                 }
-                // if the first number is not set yet
+                // if the first number is not yet set (or isNaN), it will go to this block
                 else {
                     prev = 0;
                     // put the entered value from the TextView to the EditText area with the operator
@@ -372,14 +397,14 @@ public class MainActivity extends AppCompatActivity {
 
                     // sets the first value
                     dVal1 = Double.parseDouble(txtDisplay.getText().toString());
-                    calc.setResult(dVal1);  // set as result
+                    calc.setResult(dVal1);  // the first number is set as result
 
                     // sets the operator
                     calc.setOperation(chosenOp);
 //                    Toast.makeText(getApplicationContext(), "Val1: " + dVal1, Toast.LENGTH_LONG).show();
                 }
             }
-            prev = strEditTxt.lastIndexOf(chosenOp) + 1;
+            prev = strEditTxt.lastIndexOf(chosenOp) + 1;    // for getting the substring later
             isDelLockOn = true;
         }
         else {
@@ -387,7 +412,7 @@ public class MainActivity extends AppCompatActivity {
             if(calc.getOperation() != chosenOp && calc.getOperation() != null) {
 //                Toast.makeText(getApplicationContext(), "Changed operation: " + chosenOp, Toast.LENGTH_LONG).show();
 
-                // do not allow switching of operators if "=" is already entered
+                // will not allow switching of operators if "=" is already entered
                 if(!calc.getOperation().equals("=")) {
                     // Changes the operator at the end
                     if (!TextUtils.isEmpty(editCalc.getText().toString())) {
