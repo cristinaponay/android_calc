@@ -1,6 +1,6 @@
 # My First Android Calculator
 
-This is a basic Android calculator that is designed just like the Windows 10 Standard calculator which does not follow the standard order of operations. This is a school assignment for our Android course and the instructor specifically said that we will just build a rolling calculator. I may change it in the future but for now this is it.
+This is a basic Android calculator that is designed just like the Windows 10 Standard calculator which does not follow the standard order of operations. This is a school assignment for our Mobile Application Development course at NSCC (Nova Scotia Community College) and the instructor specifically said that we will just build a rolling calculator. I may change it in the future but for now this is it.
 
 This is how the application looks like on portrait mode:
 
